@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiajunwei.senior1.week1.dao.GoodsDao">
+   <select id="list" resultType="com.jiajunwei.senior1.week1.domain.Goods"> 
+     select * from tb_goods 
+     <where>
+       <if test="name!=null and name!=''">
+        name like CONCAT('%',#{name},'%')
+       </if>
+   
+     </where>
+   </select>
+  <select id="kind" resultType="com.jiajunwei.senior1.week1.domain.Goodskind">
+    select * from tb_goodskind
+  </select>
+  <select id="brand" resultType="com.jiajunwei.senior1.week1.domain.Brand">
+    select * from tb_brand
+  </select>
+  <select id="xiu" resultType="com.jiajunwei.senior1.week1.domain.Goods">
+    select * from tb_goods where id=#{id}
+  </select>
+  <select id="xiang" resultType="com.jiajunwei.senior1.week1.domain.Goodss">
+   select a.*,b.bname,c.jname from tb_goods a LEFT JOIN tb_brand b on a.bid=b.bid
+LEFT JOIN tb_goodskind c on a.lid=c.jid where id =#{id}
+  </select>
+</mapper>
